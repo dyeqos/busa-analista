@@ -1,6 +1,7 @@
 package api.rest;
 
 import api.dao.entity.Account;
+import api.dao.entity.Client;
 import api.data.AccountData;
 import api.impl.AccountImpl;
 import jakarta.inject.Inject;
@@ -25,10 +26,35 @@ public class AccountRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/save")
-    public Response saveProduct(AccountData data){
+    public Response saveAccount(AccountData data){
         System.out.println(data);
-        Account account = accountImpl.save(data);
+        AccountData account = accountImpl.save(data);
         return Response.ok(account).build();
+    }
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/update")
+    public Response updateAccount(AccountData data){
+        AccountData account = accountImpl.update(data);
+        return Response.ok(account).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/delete")
+    public Response deleteAccount(AccountData data){
+        boolean res = accountImpl.delete(data);
+        return Response.ok(res).build();
+    }
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/list/client")
+    public Response listAccountsByClient(Client data){
+        List<AccountData> accounts = accountImpl.listAccountsByClient(data);
+        return Response.ok(accounts).build();
     }
 
 }

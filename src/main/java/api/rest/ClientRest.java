@@ -1,6 +1,7 @@
 package api.rest;
 
 import api.dao.entity.Client;
+import api.data.ClientSearchData;
 import api.impl.ClientImpl;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -25,8 +26,34 @@ public class ClientRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/save")
     public Response saveClient(Client data){
-        System.out.println(data);
         Client client = clientImpl.save(data);
+        return Response.ok(client).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/update")
+    public Response updateClient(Client data){
+        Client client = clientImpl.update(data);
+        return Response.ok(client).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/delete")
+    public Response deleteClient(Client data){
+       boolean resp =  clientImpl.delete(data);
+        return Response.ok(resp).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/search")
+    public Response searchClient(ClientSearchData data){
+        Client client =  clientImpl.search(data);
         return Response.ok(client).build();
     }
 

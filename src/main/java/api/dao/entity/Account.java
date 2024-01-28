@@ -10,23 +10,30 @@ public class Account {
     @Id
     @GeneratedValue
     Long id;
-    Long productId;
     Long numberAccount;
     BigDecimal amount;
     String dateCreate;
-    String branch;
-    @ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
-    Product product;
+    Long branchs;
+    Long productType;
+    Long currencyType;
+
+    public Long getCurrencyType() {
+        return currencyType;
+    }
+
+    public void setCurrencyType(Long currencyType) {
+        this.currencyType = currencyType;
+    }
 
     @ManyToOne(targetEntity = Client.class, fetch = FetchType.LAZY)
     Client client;
 
-    public Product getProduct() {
-        return product;
+    public Long getProductType() {
+        return productType;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductType(Long productType) {
+        this.productType = productType;
     }
 
     public Client getClient() {return client;}
@@ -43,13 +50,6 @@ public class Account {
         this.id = id;
     }
 
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
 
     public Long getNumberAccount() {
         return numberAccount;
@@ -75,11 +75,7 @@ public class Account {
         this.dateCreate = dateCreate;
     }
 
-    public String getBranch() {
-        return branch;
-    }
+    public Long getBranchs() {return branchs;}
 
-    public void setBranch(String branch) {
-        this.branch = branch;
-    }
+    public void setBranchs(Long branchs) {this.branchs = branchs;}
 }

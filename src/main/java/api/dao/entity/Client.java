@@ -10,10 +10,11 @@ public class Client {
     @Id
     @GeneratedValue
     Long id;
-    String firstName;
-    String lastName;
-    String date;
-    String documentType;
+    String name;
+    String firstLastName;
+    String secondLastName;
+    String birthday;
+    Long documentType;
     String documentNumber;
     String gender;
 
@@ -25,35 +26,43 @@ public class Client {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstLastName() {
+        return firstLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstLastName(String firstLastName) {
+        this.firstLastName = firstLastName;
     }
 
-    public String getDate() {
-        return date;
+    public String getSecondLastName() {
+        return secondLastName;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setSecondLastName(String secondLastName) {
+        this.secondLastName = secondLastName;
     }
 
-    public String getDocumentType() {
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public Long getDocumentType() {
         return documentType;
     }
 
-    public void setDocumentType(String documentType) {
+    public void setDocumentType(Long documentType) {
         this.documentType = documentType;
     }
 

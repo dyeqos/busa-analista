@@ -3,12 +3,22 @@ import java.math.BigDecimal;
 
 public class AccountData {
     Long id;
-    Long productId;
+    Long productType;
     Long numberAccount;
+    Long currencyType;
     BigDecimal amount;
-    String dateCreate;
-    String branch;
+    String createDate;
+    Long branchs;
+
     Long clientId;
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
 
     public Long getId() {
         return id;
@@ -18,12 +28,12 @@ public class AccountData {
         this.id = id;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Long getProductType() {
+        return productType;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setProductType(Long productType) {
+        this.productType = productType;
     }
 
     public Long getNumberAccount() {
@@ -34,6 +44,14 @@ public class AccountData {
         this.numberAccount = numberAccount;
     }
 
+    public Long getCurrencyType() {
+        return currencyType;
+    }
+
+    public void setCurrencyType(Long currencyType) {
+        this.currencyType = currencyType;
+    }
+
     public BigDecimal getAmount() {
         return amount;
     }
@@ -42,27 +60,19 @@ public class AccountData {
         this.amount = amount;
     }
 
-    public String getDateCreate() {
-        return dateCreate;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setDateCreate(String dateCreate) {
-        this.dateCreate = dateCreate;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
-    public String getBranch() {
-        return branch;
+    public Long getBranchs() {
+        return branchs;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
-    }
-
-    public Long getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public void setBranchs(Long branchs) {
+        this.branchs = branchs;
     }
 }
