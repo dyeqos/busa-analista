@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
-@Path("/api/client")
+@Path("/client")
 @Transactional
 public class ClientRest {
 
@@ -45,7 +45,10 @@ public class ClientRest {
     @Path("/delete")
     public Response deleteClient(Client data){
        boolean resp =  clientImpl.delete(data);
-        return Response.ok(resp).build();
+       if(resp){
+        return Response.ok(true).build();
+       }
+       return Response.status(400).entity("Tiene Cuentas Asociadas").build();
     }
 
     @POST

@@ -60,6 +60,11 @@ public class AccountImpl {
     }
 
     public boolean delete(AccountData data){
-        return accountRepository.deleteById(data.getId());
+        Account entity = accountRepository.findById(data.getId());
+        if(entity.getAmount().compareTo(BigDecimal.ZERO)==0){
+            return accountRepository.deleteById(data.getId());
+
+        }
+        return false;
     }
 }

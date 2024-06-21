@@ -13,7 +13,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
-@Path("/api/product")
+@Path("/product")
 @Transactional
 public class ProductRest {
 

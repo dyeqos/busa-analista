@@ -1,6 +1,5 @@
 package api.rest;
 
-import api.dao.entity.Account;
 import api.dao.entity.Client;
 import api.data.AccountData;
 import api.impl.AccountImpl;
@@ -15,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
-@Path("/api/account")
+@Path("/account")
 @Transactional
 public class AccountRest {
 
@@ -46,7 +45,12 @@ public class AccountRest {
     @Path("/delete")
     public Response deleteAccount(AccountData data){
         boolean res = accountImpl.delete(data);
+        if(res){
         return Response.ok(res).build();
+
+        }else{
+            return  Response.status(400).entity("La cuenta tiene saldo").build();
+        }
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

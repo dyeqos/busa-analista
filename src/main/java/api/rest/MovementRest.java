@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
-@Path("/api/movement")
+@Path("/movement")
 @Transactional
 public class MovementRest {
 
@@ -26,8 +26,13 @@ public class MovementRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/save")
     public Response saveMovement(MovementData data){
+        try {
         MovementData movement = movementImpl.save(data);
         return Response.ok(movement).build();
+
+        }catch (Exception e){
+          return   Response.status(400).entity("No tiene suficiente saldo").build();
+        }
     }
 
     @POST
