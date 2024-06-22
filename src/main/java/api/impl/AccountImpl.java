@@ -2,9 +2,10 @@ package api.impl;
 
 import api.dao.AccountRepository;
 import api.dao.ClientRepository;
-import api.dao.ProductRepository;
+import api.dao.MovementRepository;
 import api.dao.entity.Account;
 import api.dao.entity.Client;
+import api.dao.entity.Movement;
 import api.data.AccountData;
 import api.mapper.AccountMapper;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -23,9 +24,9 @@ public class AccountImpl {
     @Inject
     AccountRepository accountRepository;
     @Inject
-    ClientRepository clientRepository;
+    MovementRepository movementRepository;
     @Inject
-    ProductRepository productRepository;
+    ClientRepository clientRepository;
 
     public AccountData save(AccountData account){
         Account entity = AccountMapper.mapperToAccount(account);
@@ -62,8 +63,13 @@ public class AccountImpl {
     public boolean delete(AccountData data){
         Account entity = accountRepository.findById(data.getId());
         if(entity.getAmount().compareTo(BigDecimal.ZERO)==0){
+            List<Movement> movementList = movementRepository.listAll();
+            for(Movement mov : movementList){
+                if(mov.getAccount().getId().equals(entity.getId())){
+                    movementRepository.delete(mov);
+                }
+            }
             return accountRepository.deleteById(data.getId());
-
         }
         return false;
     }
